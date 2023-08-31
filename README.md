@@ -29,6 +29,6 @@ To get started with the library, follow these steps:
 
 Contributions to this library are welcome! If you find issues or want to enhance the library, please feel free to open an issue or submit a pull request.
 
-##License
+## License
 
 This project is licensed under the MIT License.
