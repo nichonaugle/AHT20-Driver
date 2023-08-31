@@ -9,7 +9,6 @@ This repository contains a C library for interfacing with the AHT20 sensor using
 
 - [Introduction](#introduction)
 - [Setup](#setup)
-- [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -17,7 +16,7 @@ This repository contains a C library for interfacing with the AHT20 sensor using
 
 The AHT20 sensor is a digital temperature and humidity sensor. This library provides a set of functions to initialize, calibrate, and read data from the AHT20 sensor. It stores all of the data in one struct containing meassurements for humidity, temperature (celsius), and temperature (farenheight).
 
-## Setup and Usage
+## Setup
 
 To get started with the library, follow these steps:
 
