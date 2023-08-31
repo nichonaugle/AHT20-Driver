@@ -2,6 +2,9 @@
 
 This repository contains a C library for interfacing with the AHT20 sensor using ESP32. It can be easily modified to work on other C based microcontrollers such as the arduino, arduino nano, etc. Link to datasheet: https://cdn.sparkfun.com/assets/d/2/b/e/d/AHT20.pdf
 
+![AHT20 Sensor](AHT20_image.jpg)
+*Above: AHT20 Sensor*
+
 ## Table of Contents
 
 - [Introduction](#introduction)
