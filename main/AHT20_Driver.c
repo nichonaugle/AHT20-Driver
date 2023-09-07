@@ -32,13 +32,19 @@ esp_err_t AHT20_calibrate() {
     esp_err_t err = ESP_OK;
 
     /* Reset Device Before Calibration */
-    AHT20_soft_reset();
+    err = AHT20_soft_reset();
+    /* Error Catching */
+    if (err != ESP_OK) {
+        printf("Soft reset failed: %s\n", esp_err_to_name(err));
+        return err;
+    }
 
     /* Create Byte Buffer and Send */
     uint8_t write_buffer[] = { INITIALIZE_CODE, INIT_A_CODE, INIT_B_CODE };
     err = i2c_master_write_to_device(I2C_NUM_0, DEVICE_ADDRESS, write_buffer, 3, pdMS_TO_TICKS(100));
     
     printf("Calibrating...");
+
     /* Waits Until Calibrated */
     while (AHT20_status_check() & STATUS_BUSY) {
         vTaskDelay(pdMS_TO_TICKS(10));
@@ -65,12 +71,6 @@ uint8_t AHT20_status_check() {
     /* Request Slave Status and Store */
     uint8_t status;
     esp_err_t err = i2c_master_read_from_device(I2C_NUM_0, DEVICE_ADDRESS, &status, 1, pdMS_TO_TICKS(100));
-    
-    /* Error Catching */
-    if (err != ESP_OK) {
-        printf("Soft reset failed: %s\n", esp_err_to_name(err));
-        return 0xFF;
-    }
 
     return status;
 }
@@ -82,11 +82,6 @@ esp_err_t AHT20_soft_reset() {
     /* Create Byte Buffer and Send */
     uint8_t write_buffer[] = { SOFT_RESET_CODE };
     err = i2c_master_write_to_device(I2C_NUM_0, DEVICE_ADDRESS, write_buffer, 1, pdMS_TO_TICKS(50)); //Only takes 20 ms
-
-    /* Error Catching */
-    if (err != ESP_OK) {
-        printf("Soft reset failed: %s\n", esp_err_to_name(err));
-    }
 
     return err;
 }
